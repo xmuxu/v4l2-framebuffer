@@ -44,7 +44,8 @@ void init_framebuffer() {
 
 	printf("xoffset: %d, yoffset: %d\nxres: %d, yres: %d\nbits_per_pixel: %d, line_length: %d\n",
 			vinfo.xoffset, vinfo.yoffset, vinfo.xres, vinfo.yres, vinfo.bits_per_pixel, finfo.line_length);
-
+    // ubuntu 18.04 need use this to caculate size
+    screensize = vinfo.yres * finfo.line_length;
     fbp = mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (fbp == (char *)-1) {
 		perror("Error mapping framebuffer device to memory");
